@@ -46,11 +46,11 @@ MainWindow::MainWindow( HantekDsoControl *dsoControl, DsoSettings *settings, Exp
     QLoggingCategory::setFilterRules( "kf5.kio.core=false\nqt.qpa.xcb=false" );
     QVariantMap colorMap;
     QString iconPath = QString( ":/images/" );
-    if ( QPalette().color( QPalette::Window ).lightness() < 128 ) { // automatic light/dark icon switch
-        iconPath += "darktheme/";                                   // select top window icons accordingly
-        colorMap.insert( "color-off", QColor( 208, 208, 208 ) );    // light grey normal
-        colorMap.insert( "color-active", QColor( 255, 255, 255 ) ); // white when selected
-    }
+    //if ( QPalette().color( QPalette::Window ).lightness() < 128 ) { // automatic light/dark icon switch
+    //    iconPath += "darktheme/";                                   // select top window icons accordingly
+    //    colorMap.insert( "color-off", QColor( 208, 208, 208 ) );    // light grey normal
+    //    colorMap.insert( "color-active", QColor( 255, 255, 255 ) ); // white when selected
+    //}
     elapsedTime.start();
 
     // Version 4.7.0 - see icons: https://fontawesome.com/v4/icons/
@@ -58,8 +58,8 @@ MainWindow::MainWindow( HantekDsoControl *dsoControl, DsoSettings *settings, Exp
     iconFont->initFontAwesome();
 
     ui->setupUi( this );
-    iconPause = QIcon( iconPath + "pause.svg" );
-    iconPlay = QIcon( iconPath + "play.svg" );
+    iconPause = QIcon( iconPath + "actions/pause.png" );
+    iconPlay = QIcon( iconPath + "actions/play.png" );
     ui->actionSampling->setIcon( iconPause );
     QList< QKeySequence > shortcuts; // provide multiple shortcuts for ui->actionSampling.
     // 1st entry in list is shown as shortcut in menu
@@ -76,60 +76,62 @@ MainWindow::MainWindow( HantekDsoControl *dsoControl, DsoSettings *settings, Exp
         ui->actionSampling->setToolTip( tr( "Start and stop the sampling" ) );
     else
         ui->actionSampling->setToolTip( QString() );
-    ui->actionRefresh->setIcon( QIcon( iconPath + "refresh.svg" ) );
+    ui->actionRefresh->setIcon( QIcon( iconPath + "actions/refresh.png" ) );
     ui->actionRefresh->setShortcut( Qt::Key::Key_R );
     if ( dsoSettings->scope.toolTipVisible )
         ui->actionRefresh->setToolTip( tr( "Refresh the screen trace for slow 'Roll' mode" ) );
     else
         ui->actionRefresh->setToolTip( QString() );
-    ui->actionPhosphor->setIcon( QIcon( iconPath + "phosphor.svg" ) );
+    ui->actionPhosphor->setIcon( QIcon( iconPath + "actions/phosphor.png" ) );
     ui->actionPhosphor->setShortcut( Qt::Key::Key_P );
     if ( dsoSettings->scope.toolTipVisible )
         ui->actionPhosphor->setToolTip( tr( "Let the traces fade out slowly" ) );
     else
         ui->actionPhosphor->setToolTip( QString() );
-    ui->actionHistogram->setIcon( QIcon( iconPath + "histogram.svg" ) );
+    ui->actionHistogram->setIcon( QIcon( iconPath + "actions/histogram.png" ) );
     ui->actionHistogram->setShortcut( Qt::Key::Key_H );
     if ( dsoSettings->scope.toolTipVisible )
         ui->actionHistogram->setToolTip( tr( "Show a histogram of the voltage levels on the right side of the trace" ) );
     else
         ui->actionHistogram->setToolTip( QString() );
-    ui->actionZoom->setIcon( QIcon( iconPath + "zoom.svg" ) );
+    ui->actionZoom->setIcon( QIcon( iconPath + "actions/zoom.png" ) );
     ui->actionZoom->setShortcut( Qt::Key::Key_Z );
     if ( dsoSettings->scope.toolTipVisible )
         ui->actionZoom->setToolTip( tr( "Zoom the range between the markers '1' and '2'" ) );
     else
         ui->actionZoom->setToolTip( QString() );
-    ui->actionMeasure->setIcon( QIcon( iconPath + "measure.svg" ) );
+    ui->actionMeasure->setIcon( QIcon( iconPath + "actions/measure.png" ) );
     ui->actionMeasure->setShortcut( Qt::Key::Key_M );
     if ( dsoSettings->scope.toolTipVisible )
         ui->actionMeasure->setToolTip( tr( "Enable cursor measurements" ) );
     else
         ui->actionMeasure->setToolTip( QString() );
-    ui->actionOpen->setIcon( iconFont->icon( fa::folderopen, colorMap ) );
+    ui->actionOpen->setIcon( QIcon( iconPath + "actions/open.png" ) );
     ui->actionOpen->setToolTip( tr( "Load scope settings from a config file" ) );
-    ui->actionSave->setIcon( iconFont->icon( fa::save, colorMap ) );
+    ui->actionSave->setIcon( QIcon( iconPath + "actions/save.png" ) );
     ui->actionSave->setToolTip( tr( "Save the scope settings to the default location" ) );
-    ui->actionSave_as->setIcon( iconFont->icon( fa::save, colorMap ) );
+    ui->actionSave_as->setIcon( QIcon( iconPath + "actions/save_as.png" ) );
     ui->actionSave_as->setToolTip( tr( "Save the scope settings to a user defined file" ) );
-    ui->actionSettings->setIcon( iconFont->icon( fa::sliders, colorMap ) );
+    ui->actionExit->setIcon( QIcon( iconPath + "actions/exit.png" ) );
+    ui->actionExit->setToolTip( tr( "Exit the application" ) );
+    ui->actionSettings->setIcon( QIcon( iconPath + "actions/settings.png" ) );
     ui->actionSettings->setToolTip( tr( "Define scope settings, analysis parameters and colors" ) );
-    ui->actionCalibrateOffset->setIcon( iconFont->icon( fa::wrench, colorMap ) );
+    ui->actionCalibrateOffset->setIcon( QIcon( iconPath + "actions/offset.png" ) );
     ui->actionCalibrateOffset->setToolTip( tr( "Short-circuit both inputs and slowly select all voltage gain settings" ) );
-    ui->actionManualCommand->setIcon( iconFont->icon( fa::terminal, colorMap ) );
+    ui->actionManualCommand->setIcon( QIcon( iconPath + "actions/terminal.png" ) );
     ui->actionManualCommand->setToolTip( tr( "Send low level commands directly to the scope: 'CC XX XX'" ) );
-    ui->actionUserManual->setIcon( iconFont->icon( fa::book, colorMap ) );
+    ui->actionUserManual->setIcon( QIcon( iconPath + "actions/book.png" ) );
     ui->actionUserManual->setToolTip( tr( "Read the fine manual" ) );
-    ui->actionACmodification->setIcon( iconFont->icon( fa::book, colorMap ) );
+    ui->actionACmodification->setIcon( QIcon( iconPath + "actions/book.png" ) );
     ui->actionACmodification->setToolTip( tr( "Documentation how to add HW for AC coupled inputs" ) );
-    ui->actionFrequencyGeneratorModification->setIcon( iconFont->icon( fa::book, colorMap ) );
+    ui->actionFrequencyGeneratorModification->setIcon( QIcon( iconPath + "actions/book.png" ) );
     ui->actionFrequencyGeneratorModification->setToolTip(
         tr( "Documentation how to get jitter-free calibration frequency output" ) );
-    ui->actionAbout->setIcon( iconFont->icon( fa::questioncircle, colorMap ) );
+    ui->actionAbout->setIcon( QIcon( iconPath + "actions/about.png" ) );
     ui->actionAbout->setToolTip( tr( "Show info about the scope's HW and SW" ) );
 
     // Window title
-    setWindowIcon( QIcon( ":/images/OpenHantek.svg" ) );
+    setWindowIcon( QIcon( ":/images/OpenHantek.png" ) );
     setWindowTitle( dsoControl->getDevice()->isRealHW()
                         ? tr( "OpenHantek6022 (%1) - Device %2 (FW%3)" )
                               .arg( QString::fromStdString( VERSION ), dsoControl->getModel()->name )
@@ -140,12 +142,12 @@ MainWindow::MainWindow( HantekDsoControl *dsoControl, DsoSettings *settings, Exp
     setDockOptions( dockOptions() | QMainWindow::GroupedDragging );
 #endif
     QAction *action;
-    action = new QAction( iconFont->icon( fa::camera, colorMap ), tr( "&Screenshot" ), this );
+    action = new QAction( QIcon( iconPath + "actions/camera.png" ), tr( "&Screenshot" ), this );
     action->setToolTip( tr( "Make an immediate screenshot of the program window and save it into the current directory" ) );
     connect( action, &QAction::triggered, this, [ this ]() { screenShot( SCREENSHOT, true ); } );
     ui->menuExport->addAction( action );
 
-    action = new QAction( iconFont->icon( fa::clone, colorMap ), tr( "&Hardcopy" ), this );
+    action = new QAction( QIcon( iconPath + "actions/clone.png" ), tr( "&Hardcopy" ), this );
     action->setToolTip( tr( "Make an immediate (printable) hardcopy of the display and save it into the current directory" ) );
     connect( action, &QAction::triggered, this, [ this ]() {
         dsoWidget->switchToPrintColors();
@@ -155,12 +157,12 @@ MainWindow::MainWindow( HantekDsoControl *dsoControl, DsoSettings *settings, Exp
 
     ui->menuExport->addSeparator();
 
-    action = new QAction( iconFont->icon( fa::camera, colorMap ), tr( "Save screenshot as .." ), this );
+    action = new QAction( QIcon( iconPath + "actions/save_as.png" ), tr( "Save screenshot as .." ), this );
     action->setToolTip( tr( "Make a screenshot of the program window and define the storage location" ) );
     connect( action, &QAction::triggered, this, [ this ]() { screenShot( SCREENSHOT ); } );
     ui->menuExport->addAction( action );
 
-    action = new QAction( iconFont->icon( fa::clone, colorMap ), tr( "Save Hardcopy as .." ), this );
+    action = new QAction( QIcon( iconPath + "actions/save_as.png" ), tr( "Save Hardcopy as .." ), this );
     action->setToolTip( tr( "Make a (printable) hardcopy of the display and define the storage location" ) );
     connect( action, &QAction::triggered, this, [ this ]() {
         dsoWidget->switchToPrintColors();
@@ -168,7 +170,7 @@ MainWindow::MainWindow( HantekDsoControl *dsoControl, DsoSettings *settings, Exp
     } );
     ui->menuExport->addAction( action );
 
-    action = new QAction( iconFont->icon( fa::print, colorMap ), tr( "&Print screen .." ), this );
+    action = new QAction( QIcon( iconPath + "actions/print.png" ), tr( "&Print screen .." ), this );
     action->setToolTip( tr( "Send the hardcopy to a printer" ) );
     connect( action, &QAction::triggered, this, [ this ]() {
         dsoWidget->switchToPrintColors();
@@ -179,7 +181,7 @@ MainWindow::MainWindow( HantekDsoControl *dsoControl, DsoSettings *settings, Exp
     ui->menuExport->addSeparator();
 
     for ( auto *exporter : *exporterRegistry ) {
-        action = new QAction( iconFont->icon( exporter->faIcon(), colorMap ), exporter->name(), this );
+        action = new QAction( QIcon( iconPath + "actions/exporter.png" ), exporter->name(), this );
         action->setToolTip( tr( "Export captured data in %1 format for further processing" ).arg( exporter->format() ) );
         action->setCheckable( exporter->type() == ExporterInterface::Type::ContinuousExport );
         connect( action, &QAction::triggered, exporterRegistry, [ exporter, exporterRegistry ]( bool checked ) {

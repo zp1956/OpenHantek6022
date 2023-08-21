@@ -12,8 +12,8 @@
 
 // These values allow a quite narrow but readable display
 const QString defaultFont = "Arial";
-const int defaultFontSize = 10;
-const int defaultCondensed = 87; // SemiCondensed = 87%
+const int defaultFontSize = 8;
+const int defaultCondensed = 100; // SemiCondensed = 100%
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \struct DsoSettingsColorValues

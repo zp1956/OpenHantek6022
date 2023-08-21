@@ -185,9 +185,9 @@ void SiSpinBox::resetSteppedTo() { steppedTo = false; }
 
 // fix Dark mode background introduced with MacOS 10.24 (mojave)
 void SiSpinBox::setBackground() {
-    QPalette palette;
-    setStyleSheet( "SiSpinBox {color: " + palette.color( QPalette::Text ).name() +
-                   "; background-color: " + palette.color( QPalette::Mid ).name() + " }" );
-    setStyleSheet( "QToolTip { color: " + palette.color( QPalette::ToolTipText ).name() +
-                   "; background-color: " + palette.color( QPalette::ToolTipBase ).name() + " }" );
+    //QPalette palette;
+    //setStyleSheet( "SiSpinBox {color: " + palette.color( QPalette::Text ).name() +
+    //               "; background-color: " + palette.color( QPalette::Mid ).name() + " }" );
+    //setStyleSheet( "QToolTip { color: " + palette.color( QPalette::ToolTipText ).name() +
+    //               "; background-color: " + palette.color( QPalette::ToolTipBase ).name() + " }" );
 }
