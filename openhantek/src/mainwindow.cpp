@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "mainwindow.h"
-#include "iconfont/QtAwesome.h"
+//#include "iconfont/QtAwesome.h"
 #include "ui_mainwindow.h"
 
 #include "HorizontalDock.h"
@@ -54,8 +54,8 @@ MainWindow::MainWindow( HantekDsoControl *dsoControl, DsoSettings *settings, Exp
     elapsedTime.start();
 
     // Version 4.7.0 - see icons: https://fontawesome.com/v4/icons/
-    iconFont = new QtAwesome( this );
-    iconFont->initFontAwesome();
+    //iconFont = new QtAwesome( this );
+    //iconFont->initFontAwesome();
 
     ui->setupUi( this );
     iconPause = QIcon( iconPath + "actions/pause.png" );
@@ -681,9 +681,9 @@ void MainWindow::screenShot( screenshotType_t screenshotType, bool autoSafe ) {
     else if ( scale > 1 ) // upscale accordingly
         screenshot = screenshot.scaled( sw *= scale, sh *= scale );
     printer.newPage();
-    QPainter p( &printer );
-    p.drawPixmap( ( pw - sw ) / 2, ( ph - sh ) / 2, screenshot ); // center the picture
-    p.end();
+    //QPainter p( &printer );
+    //p.drawPixmap( ( pw - sw ) / 2, ( ph - sh ) / 2, screenshot ); // center the picture
+    //p.end();
 }
 
 

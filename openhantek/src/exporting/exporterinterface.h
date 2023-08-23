@@ -31,7 +31,7 @@ class ExporterInterface {
      * @return Return the icon representation of this exporter. Will be used in graphical
      * interfaces.
      */
-    virtual int faIcon() = 0;
+    //virtual int faIcon() = 0;
 
     /**
      * @return Return the text representation / name of this exporter. Will be used in graphical
